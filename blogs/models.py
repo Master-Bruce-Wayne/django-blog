@@ -16,8 +16,8 @@ class Category(models.Model):
 
 
 STATUS_CHOICES = (
-    (0, 'Draft'),
-    (1, 'Published'),
+    ('Draft', 'Draft'),
+    ('Published', 'Published'),
 )
 
 class Blog(models.Model): 
@@ -32,7 +32,7 @@ class Blog(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     # for creating drop-down menu
-    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
+    status = models.CharField(choices=STATUS_CHOICES, default='Draft', max_length=10)
     is_featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
